@@ -11,10 +11,12 @@ OCAMLC=ocamlfind ocamlc
 OCAMLOPT=ocamlfind ocamlopt
 OCAMLDEP=ocamlfind ocamldep
 OCAMLOBJS=ocamlobjs
+OCAMLLEX=ocamllex
+OCAMLYACC=ocamlyacc
 INCLUDES=-I src
 TEST_INCLUDES=-package oUnit -linkpkg -I tests
-OCAMLFLAGS=${INCLUDES} str.cma
-OCAMLOPTFLAGS=${INCLUDES} str.cmxa
+OCAMLFLAGS=${INCLUDES}
+OCAMLOPTFLAGS=${INCLUDES}
 
 # Definitions for building byte-compiled executables
 all: bin/byte/${PROGRAM}
@@ -49,7 +51,7 @@ bin/opt/tests: bin/opt ${TEST_XOBJS}
 	${OCAMLOPT} -o $@ ${OCAMLOPTFLAGS} ${TEST_XOBJS}
 
 # Common rules
-.SUFFIXES: .ml .mli .cmo .cmi .cmx
+.SUFFIXES: .ml .mli .mll .mly .cmo .cmi .cmx
 
 .ml.cmo:
 	${OCAMLC} ${OCAMLFLAGS} -c $<
@@ -60,12 +62,25 @@ bin/opt/tests: bin/opt ${TEST_XOBJS}
 .ml.cmx:
 	${OCAMLOPT} ${OCAMLOPTFLAGS} -c $<
 
+.mly.ml:
+	${OCAMLYACC} $<
+
+.mly.mli:
+	${OCAMLYACC} $<
+
+.mll.ml:
+	${OCAMLLEX} $<
+
 # Clean up
-.PHONY: clean
+.PHONY: clean clobber
 clean:
 	rm -f bin/byte/* bin/opt/*
 	find . -name '*.cm[iox]' -exec rm {} \;
 	find . -name '*.o' -exec rm {} \;
+
+clobber: clean
+	rm -f src/grammar.ml src/grammar.mli
+	rm -f src/syntax.ml
 
 # Dependencies
 .PHONY: depend objs
