@@ -1,0 +1,1 @@
+src/expr.cmo src/grammar.cmo src/syntax.cmo src/parser.cmo src/lambda.cmo tests/testCase.cmo tests/test_substitute.cmo tests/test_reduce.cmo tests/test_parser.cmo tests/test_occurs_free.cmo tests/test_equivalent.cmo tests/suite.cmo

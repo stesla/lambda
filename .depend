@@ -1,30 +1,30 @@
-src/grammar.cmo: src/expr.cmx src/grammar.cmi 
+src/grammar.cmo: src/expr.cmo src/grammar.cmi 
 src/grammar.cmx: src/expr.cmx src/grammar.cmi 
-src/lambda.cmo: src/expr.cmx src/lambda.cmi 
+src/grammar.cmi: src/expr.cmo 
+src/lambda.cmo: src/expr.cmo src/lambda.cmi 
 src/lambda.cmx: src/expr.cmx src/lambda.cmi 
-src/main.cmo: src/syntax.cmx src/parser.cmx src/lambda.cmi src/expr.cmx 
+src/lambda.cmi: src/expr.cmo 
+src/main.cmo: src/syntax.cmo src/parser.cmo src/lambda.cmi src/expr.cmo 
 src/main.cmx: src/syntax.cmx src/parser.cmx src/lambda.cmx src/expr.cmx 
-src/parser.cmo: src/syntax.cmx src/grammar.cmi 
+src/parser.cmo: src/syntax.cmo src/grammar.cmi 
 src/parser.cmx: src/syntax.cmx src/grammar.cmx 
 src/syntax.cmo: src/grammar.cmi 
 src/syntax.cmx: src/grammar.cmx 
-tests/suite.cmo: tests/test_substitute.cmx tests/test_reduce.cmx \
-    tests/test_parser.cmx tests/test_occurs_free.cmx \
-    tests/test_equivalent.cmx 
+tests/suite.cmo: tests/test_substitute.cmo tests/test_reduce.cmo \
+    tests/test_parser.cmo tests/test_occurs_free.cmo \
+    tests/test_equivalent.cmo 
 tests/suite.cmx: tests/test_substitute.cmx tests/test_reduce.cmx \
     tests/test_parser.cmx tests/test_occurs_free.cmx \
     tests/test_equivalent.cmx 
-tests/test_equivalent.cmo: tests/testCase.cmx 
+tests/test_equivalent.cmo: tests/testCase.cmo 
 tests/test_equivalent.cmx: tests/testCase.cmx 
-tests/test_occurs_free.cmo: tests/testCase.cmx 
+tests/test_occurs_free.cmo: tests/testCase.cmo 
 tests/test_occurs_free.cmx: tests/testCase.cmx 
-tests/test_parser.cmo: tests/testCase.cmx 
+tests/test_parser.cmo: tests/testCase.cmo 
 tests/test_parser.cmx: tests/testCase.cmx 
-tests/test_reduce.cmo: tests/testCase.cmx 
+tests/test_reduce.cmo: tests/testCase.cmo 
 tests/test_reduce.cmx: tests/testCase.cmx 
-tests/test_substitute.cmo: tests/testCase.cmx 
+tests/test_substitute.cmo: tests/testCase.cmo 
 tests/test_substitute.cmx: tests/testCase.cmx 
-tests/testCase.cmo: src/parser.cmx src/lambda.cmi src/expr.cmx 
+tests/testCase.cmo: src/parser.cmo src/lambda.cmi src/expr.cmo 
 tests/testCase.cmx: src/parser.cmx src/lambda.cmx src/expr.cmx 
-src/grammar.cmi: src/expr.cmx 
-src/lambda.cmi: src/expr.cmx 
