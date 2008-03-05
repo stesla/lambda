@@ -1,0 +1,8 @@
+bin
+*.cmi
+*.cmo
+*.cmx
+*.o
+src/grammar.ml
+src/grammar.mli
+src/syntax.ml
